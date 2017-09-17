@@ -381,7 +381,7 @@
  // If this is enabled, find your own PID constants below.
  //#define PIDTEMPBED
  
- //#define BED_LIMIT_SWITCHING
+ #define BED_LIMIT_SWITCHING
  
  // This sets the max power delivered to the bed, and replaces the HEATER_BED_DUTY_CYCLE_DIVIDER option.
  // all forms of bed control obey this (PID, bang-bang, bang-bang with hysteresis)
@@ -473,7 +473,7 @@
  //#define USE_ZMAX_PLUG
  
  // coarse Endstop Settings
- #define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
+ //#define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
  
  #if DISABLED(ENDSTOPPULLUPS)
    // fine endstop settings: Individual pullups. will be ignored if ENDSTOPPULLUPS is defined
@@ -524,7 +524,7 @@
   * Override with M92
   *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
   */
- #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 500 }
+ #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 93 }
  
  /**
   * Default Max Feed Rate (mm/s)
