@@ -282,7 +282,7 @@
   *
   * :{ '0': "Not used", '1':"100k / 4.7k - EPCOS", '2':"200k / 4.7k - ATC Semitec 204GT-2", '3':"Mendel-parts / 4.7k", '4':"10k !! do not use for a hotend. Bad resolution at high temp. !!", '5':"100K / 4.7k - ATC Semitec 104GT-2 (Used in ParCan & J-Head)", '6':"100k / 4.7k EPCOS - Not as accurate as Table 1", '7':"100k / 4.7k Honeywell 135-104LAG-J01", '8':"100k / 4.7k 0603 SMD Vishay NTCS0603E3104FXT", '9':"100k / 4.7k GE Sensing AL03006-58.2K-97-G1", '10':"100k / 4.7k RS 198-961", '11':"100k / 4.7k beta 3950 1%", '12':"100k / 4.7k 0603 SMD Vishay NTCS0603E3104FXT (calibrated for Makibox hot bed)", '13':"100k Hisens 3950  1% up to 300°C for hotend 'Simple ONE ' & hotend 'All In ONE'", '20':"PT100 (Ultimainboard V2.x)", '51':"100k / 1k - EPCOS", '52':"200k / 1k - ATC Semitec 204GT-2", '55':"100k / 1k - ATC Semitec 104GT-2 (Used in ParCan & J-Head)", '60':"100k Maker's Tool Works Kapton Bed Thermistor beta=3950", '66':"Dyze Design 4.7M High Temperature thermistor", '70':"the 100K thermistor found in the bq Hephestos 2", '71':"100k / 4.7k Honeywell 135-104LAF-J01", '147':"Pt100 / 4.7k", '1047':"Pt1000 / 4.7k", '110':"Pt100 / 1k (non-standard)", '1010':"Pt1000 / 1k (non standard)", '-3':"Thermocouple + MAX31855 (only for sensor 0)", '-2':"Thermocouple + MAX6675 (only for sensor 0)", '-1':"Thermocouple + AD595",'998':"Dummy 1", '999':"Dummy 2" }
   */
- #define TEMP_SENSOR_0 11
+ #define TEMP_SENSOR_0 5
  #define TEMP_SENSOR_1 0
  #define TEMP_SENSOR_2 0
  #define TEMP_SENSOR_3 0
@@ -351,9 +351,9 @@
    // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
  
    // Ultimaker
-   #define  DEFAULT_Kp 22.2
-   #define  DEFAULT_Ki 1.08
-   #define  DEFAULT_Kd 114
+   #define  DEFAULT_Kp 22.68
+   #define  DEFAULT_Ki 1.86
+   #define  DEFAULT_Kd 69.22
  
    // MakerGear
    //#define  DEFAULT_Kp 7.0
@@ -381,7 +381,7 @@
  // If this is enabled, find your own PID constants below.
  //#define PIDTEMPBED
  
- //#define BED_LIMIT_SWITCHING
+ #define BED_LIMIT_SWITCHING
  
  // This sets the max power delivered to the bed, and replaces the HEATER_BED_DUTY_CYCLE_DIVIDER option.
  // all forms of bed control obey this (PID, bang-bang, bang-bang with hysteresis)
@@ -473,7 +473,7 @@
  //#define USE_ZMAX_PLUG
  
  // coarse Endstop Settings
- #define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
+ //#define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
  
  #if DISABLED(ENDSTOPPULLUPS)
    // fine endstop settings: Individual pullups. will be ignored if ENDSTOPPULLUPS is defined
@@ -524,7 +524,7 @@
   * Override with M92
   *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
   */
- #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 500 }
+ #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 93 }
  
  /**
   * Default Max Feed Rate (mm/s)
@@ -580,7 +580,7 @@
   *
   * Enable this option for a probe connected to the Z Min endstop pin.
   */
- //#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+ #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
  
  /**
   * Z_MIN_PROBE_ENDSTOP
@@ -602,7 +602,8 @@
   *
   */
  //#define Z_MIN_PROBE_ENDSTOP
- 
+ //#define Z_MIN_PROBE_PIN  19
+
  /**
   * Probe Type
   *
@@ -621,7 +622,7 @@
   * A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
   *   (e.g., an inductive probe or a nozzle-based probe-switch.)
   */
- //#define FIX_MOUNTED_PROBE
+ #define FIX_MOUNTED_PROBE
  
  /**
   * Z Servo Probe, such as an endstop switch on a rotating arm.
@@ -678,9 +679,9 @@
   *      O-- FRONT --+
   *    (0,0)
   */
- #define X_PROBE_OFFSET_FROM_EXTRUDER 10  // X offset: -left  +right  [of the nozzle]
- #define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
- #define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
+ #define X_PROBE_OFFSET_FROM_EXTRUDER 21  // X offset: -left  +right  [of the nozzle]
+ #define Y_PROBE_OFFSET_FROM_EXTRUDER 0  // Y offset: -front +behind [the nozzle]
+ #define Z_PROBE_OFFSET_FROM_EXTRUDER -0.50   // Z offset: -below +above  [the nozzle]
  
  // X and Y axis travel speed (mm/m) between probes
  #define XY_PROBE_SPEED 8000
@@ -692,7 +693,7 @@
  #define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 2)
  
  // Use double touch for probing
- //#define PROBE_DOUBLE_TOUCH
+ #define PROBE_DOUBLE_TOUCH
  
  /**
   * Z probes require clearance when deploying, stowing, and moving between
@@ -716,7 +717,7 @@
  #define Z_PROBE_OFFSET_RANGE_MAX 20
  
  // Enable the M48 repeatability test to test probe accuracy
- //#define Z_MIN_PROBE_REPEATABILITY_TEST
+ #define Z_MIN_PROBE_REPEATABILITY_TEST
  
  // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
  // :{ 0:'Low', 1:'High' }
@@ -785,7 +786,7 @@
  // If enabled, axes won't move below MIN_POS in response to movement commands.
  //#define MIN_SOFTWARE_ENDSTOPS
  // If enabled, axes won't move above MAX_POS in response to movement commands.
- //#define MAX_SOFTWARE_ENDSTOPS
+ #define MAX_SOFTWARE_ENDSTOPS
  
  /**
   * Filament Runout Sensor
@@ -847,7 +848,7 @@
   */
  //#define AUTO_BED_LEVELING_3POINT
  //#define AUTO_BED_LEVELING_LINEAR
- //#define AUTO_BED_LEVELING_BILINEAR
+ #define AUTO_BED_LEVELING_BILINEAR
  //#define AUTO_BED_LEVELING_UBL
  //#define MESH_BED_LEVELING
  
@@ -868,14 +869,14 @@
  #if ENABLED(AUTO_BED_LEVELING_LINEAR) || ENABLED(AUTO_BED_LEVELING_BILINEAR)
  
    // Set the number of grid points per dimension.
-   #define GRID_MAX_POINTS_X 3
+   #define GRID_MAX_POINTS_X 5
    #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
  
    // Set the boundaries for probing (where the probe can reach).
-   #define LEFT_PROBE_BED_POSITION 15
-   #define RIGHT_PROBE_BED_POSITION 170
-   #define FRONT_PROBE_BED_POSITION 20
-   #define BACK_PROBE_BED_POSITION 170
+   #define LEFT_PROBE_BED_POSITION 30
+   #define RIGHT_PROBE_BED_POSITION 270
+   #define FRONT_PROBE_BED_POSITION 30
+   #define BACK_PROBE_BED_POSITION 270
  
    // The Z probe minimum outer margin (to validate G29 parameters).
    #define MIN_PROBE_EDGE 10
@@ -985,7 +986,7 @@
  // - Move the Z probe (or nozzle) to a defined XY point before Z Homing when homing all axes (G28).
  // - Prevent Z homing when the Z probe is outside bed area.
  //
- //#define Z_SAFE_HOMING
+ #define Z_SAFE_HOMING
  
  #if ENABLED(Z_SAFE_HOMING)
    #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing when homing all axis (G28).
@@ -1291,7 +1292,7 @@
  //
  // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
  //
- //#define INDIVIDUAL_AXIS_HOMING_MENU
+ #define INDIVIDUAL_AXIS_HOMING_MENU
  
  //
  // SPEAKER/BUZZER
@@ -1299,7 +1300,7 @@
  // If you have a speaker that can produce tones, enable it here.
  // By default Marlin assumes you have a buzzer with a fixed frequency.
  //
- //#define SPEAKER
+ #define SPEAKER
  
  //
  // The duration and frequency for the UI feedback sound.
